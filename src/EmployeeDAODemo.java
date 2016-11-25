@@ -3,46 +3,62 @@ import com.niit.pattern.daoimpl.EmployeeDAOImpl;
 import com.niit.pattern.entity.Employee;
 
 public class EmployeeDAODemo {
+private static EmployeeDAO employeeDAO = EmployeeDAOImpl.getEmployeeDAO();
 
 	public static void main(String[] args) {
 		//displaying all employee
 		System.out.println("Display All Employee");
-		EmployeeDAO employeeDAO = EmployeeDAOImpl.getEmployeeDAO();
-		displayAllEmployee(employeeDAO);
+		displayAllEmployee();
 		
 		//adding Employee
 		System.out.println("After Adding");
 		Employee employee = new Employee(6, "Test", "Chembur", "Manager", "Kurla", 15000);
 		employeeDAO.add(employee);
-		displayAllEmployee(employeeDAO);
+		displayAllEmployee();
 		
 		//Update Employee
 		System.out.println("After Updating");
 		employee = employeeDAO.getId(4);
 		employee.setName("Sailee");
 		employeeDAO.update(employee);
-		displayAllEmployee(employeeDAO);
+		displayAllEmployee();
 		
 		//Delete Employee
 		System.out.println("After Deleting");
 		employee = employeeDAO.getId(5);
 		employeeDAO.delete(employee);
-		displayAllEmployee(employeeDAO);
+		displayAllEmployee();
 		
 		//get by designation
 		System.out.println("Designation");
-		employee = employeeDAO.getDesignation("Manager");
-		displayByDesignation(employeeDAO);
+		displayByDesignation("Manager");
+		
+		//get by address
+		System.out.println("Address");
+		displayByAddress("Vashi");
 	}
 
-	private static void displayByDesignation(EmployeeDAO employeeDAO) {
-		for (Employee employee : employeeDAO.desinationList()) {
+		
+	
+	private static void displayByAddress(String address) {
+		for (Employee employee : employeeDAO.getByAddress(address)) {
 			System.out.println(employee);
 		}
 		
 	}
 
-	private static void displayAllEmployee(EmployeeDAO employeeDAO) {
+
+
+	private static void displayByDesignation(String designation) {
+		for (Employee employee : employeeDAO.getByDesignation(designation)) {
+			System.out.println(employee);
+		}
+		
+	}
+
+
+
+	private static void displayAllEmployee() {
 		for (Employee employee : employeeDAO.employeeList()) {
 			System.out.println(employee);
 		}

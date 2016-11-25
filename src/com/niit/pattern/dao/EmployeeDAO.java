@@ -7,12 +7,12 @@ import com.niit.pattern.entity.Employee;
 public interface EmployeeDAO {
 	//Method to get ID
 	Employee getId(int id);
-	//method to get designation
-	Employee getDesignation(String designation);
 	//all employee list
 	List<Employee> employeeList();
 	//list by designation
-	List<Employee> desinationList();
+	List<Employee> getByDesignation(String designation);
+	//List by address
+	List<Employee> getByAddress(String address);
 	//To add Employee
 	boolean add(Employee employee);
 	//To update employee

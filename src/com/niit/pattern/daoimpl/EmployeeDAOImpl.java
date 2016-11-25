@@ -16,7 +16,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return employeeDAO;
 	}
 	List<Employee> employeeList = null;
-	List<Employee> designationList = null;
 	private EmployeeDAOImpl() {
 		employeeList = new ArrayList<>();
 		employeeList.add(new Employee(1,"Faisal","Chembur","Manager","Kurla",18000));
@@ -34,31 +33,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public Employee getDesignation(String designation) {
-		designationList = new ArrayList<>();
-		for (Employee employee : employeeList) {
-			if(employee.getDesignation() == designation){
-				designationList.add(employee);
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public List<Employee> employeeList() {
-		// TODO Auto-generated method stub
-		return employeeList;
-	}
-
-	@Override
-	public List<Employee> desinationList() {
-		// TODO Auto-generated method stub
-		return designationList;
-	}
-
+	}	
 	@Override
 	public boolean add(Employee employee) {
 		employeeList.add(employee);
@@ -82,6 +57,33 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public boolean delete(Employee employee) {
 		employeeList.remove(employee);
 		return true;
+	}
+	@Override
+	public List<Employee> getByDesignation(String designation) {
+		List<Employee> temp = new ArrayList<>();
+		for (Employee employee : employeeList) {
+			if(employee.getDesignation().equals(designation)){
+				temp.add(employee);
+			}
+		}
+		return temp;
+	}
+
+	@Override
+	public List<Employee> employeeList() {
+		// TODO Auto-generated method stub
+		return employeeList;
+	}
+
+	@Override
+	public List<Employee> getByAddress(String address) {
+		List<Employee> temp = new ArrayList<>();
+		for (Employee employee : employeeList) {
+			if(employee.getAddress().equals(address)){
+				temp.add(employee);
+			}
+		}
+		return temp;
 	}
 
 }
